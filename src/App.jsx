@@ -4,6 +4,7 @@ import Sidebar from './components/Sidebar';
 import FeedList from './components/FeedList';
 import AddFeedForm from './components/AddFeedForm';
 import SystemStats from './components/SystemStats';
+import WebhookManager from './components/WebhookManager';
 
 function App() {
   const [activeTab, setActiveTab] = useState('feeds');
@@ -19,6 +20,8 @@ function App() {
         return <FeedList key={refreshFeeds} />;
       case 'add-feed':
         return <AddFeedForm onFeedAdded={handleFeedAdded} />;
+      case 'webhooks':
+        return <WebhookManager />;
       case 'stats':
         return <SystemStats />;
       default:
@@ -51,6 +54,16 @@ function App() {
               }`}
             >
               ➕ Add Feed
+            </button>
+            <button
+              onClick={() => setActiveTab('webhooks')}
+              className={`w-full text-left px-4 py-2 rounded-lg ${
+                activeTab === 'webhooks' 
+                  ? 'bg-blue-500 text-white' 
+                  : 'text-gray-700 hover:bg-gray-100'
+              }`}
+            >
+              🔗 Webhook Manager
             </button>
             <button
               onClick={() => setActiveTab('stats')}
